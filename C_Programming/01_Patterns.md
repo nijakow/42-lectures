@@ -161,10 +161,10 @@ str = "Some static string";
 Arrays are initialized using the [Array Initialization Pattern](#array-initialization).
 
 #### Array Initialization
-There are multiple ways to initialize arrays. The generalized form to initialize an array of type `int array[10]` is by using a [BZero Pattern](#bzero-pattern).
+There are multiple ways to initialize arrays. The generalized form to initialize an array of an atomic type (e.g. `char`, `short`, `int`, `long`, ...) is by using a [BZero Pattern](#bzero-pattern).
 
 #### BZero Pattern
-In order to initialize a region of memory (as specified by its address and size), we use the _BZero Pattern_. This pattern is closely related to the standard library functions `bzero` and `memset`.
+In order to initialize a region of memory (as specified by its address and size) with zeroes, we use the _BZero Pattern_. This pattern is closely related to the standard library functions `bzero` and `memset`.
 
 Initializing an array with the declaration `int array[n];` using the _BZero Pattern_ looks like this:
 
@@ -179,6 +179,6 @@ while (i < n)
 
 An block of pointers or characters can be initialized by using `NULL` or `'\0'` as the according default value.
 
-It's often easier to write `bzero(array, 10 * sizeof(int));` or `memset(array, 0, 10 * sizeof(int))`. Be aware though that the definition of `NULL` might differ on multiple systems. Therefore, using `bzero` or `memset` for pointer arrays is _not recommended_.
+It's often easier to write `bzero(array, 10 * sizeof(int));` or `memset(array, 0, 10 * sizeof(int))`. Be aware though that the definition of `NULL` and the interna of floating point numbers might differ on multiple systems. Therefore, using `bzero` or `memset` for pointer arrays and arrays of type `float`, `double`, `struct` or `union` is _not recommended_.
 
 ### High-Level Patterns
