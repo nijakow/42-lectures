@@ -131,7 +131,7 @@ if (ptr == 0)
     return NULL;
 ```
 
-Writing _NULL Guard_ patterns that way is _dangerous_ since both versions of the code above check whether `ptr` is equal to `0` (meaning the numerical value zero, not the "pointer to nothing" called referred to by `NULL`). Due to the fact that `NULL` is not the same thing as as the number zero - although on some platforms it might be represented by the same value - the resulting code will _not be portable_. Therefore, compiling it on a different machine might break the guard, leading to undefined and unwanted behavior.
+Writing _NULL Guard_ patterns that way is _dangerous_ since both versions of the code above check whether `ptr` is equal to `0` (meaning the numerical value zero, not the "pointer to nothing" referred to by `NULL`). Due to the fact that `NULL` is not the same thing as as the number zero - although on some platforms it might be represented by the same value - the resulting code will _not be portable_. Therefore, compiling it on a different machine might break the guard, leading to undefined and unwanted behavior.
 
 
 ### Initialization Patterns
