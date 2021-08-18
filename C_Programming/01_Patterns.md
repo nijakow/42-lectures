@@ -12,3 +12,56 @@ Think of it as a "fill in the blanks"-text ("Lückentext" in German), where you 
 
 The idea behind patterns is to provide you with simple, easy-to-replace "blocks" of code that can be treated as units on their own, giving you the opportunity to change or improve them without accidentally damaging other parts of your code in the process, therefore avoiding errors.
 
+## The Layout of a Function
+
+Most functions that you will encounter tend to share some similarities. Let's call them the _Master Pattern_, as this will always be the pattern you'll start with.
+
+I will give you an example with the `ft_bzero` function:
+
+```c
+void ft_bzero(void* s, size_t n)
+{
+	char*   bytes;
+	size_t  i;
+	
+	if (s == NULL)
+		return;
+	bytes = (char*) s;
+	i = 0;
+	while (i < n)
+	{
+		bytes[i] = 0;
+		i = i + 1;
+	}
+	return;	/* NOTE: This line is optional */
+}
+```
+
+Let's now subdivide this function into five sections.
+
+```c
+void ft_bzero(void* s, size_t n)
+{
+	/* 1st: Variable Declarations */
+    char*   bytes;
+    size_t  i;
+    
+    /* 2nd: Guards against Segmentation Faults */
+    if (s == NULL)
+        return;
+    
+    /* 3rd: Initialization of Variables */
+    bytes = (char*) s;
+    
+    /* 4th: The Body of your Function (in this case, a while loop) */
+    i = 0;
+    while (i < n)
+    {
+        bytes[i] = 0;
+        i = i + 1;
+    }
+    
+    /* 5th: Wrapping Things Up */
+    return;
+}
+```
