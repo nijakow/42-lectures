@@ -42,7 +42,7 @@ Let's now subdivide this function into five sections.
 ```c
 void ft_bzero(void* s, size_t n)
 {
-	/* 1st: Variable Declarations */
+    /* 1st: Variable Declarations */
     char*   bytes;
     size_t  i;
     
