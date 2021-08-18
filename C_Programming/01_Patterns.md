@@ -14,7 +14,7 @@ The idea behind patterns is to provide you with simple, easy-to-replace "blocks"
 
 ## The Layout of a Function
 
-Most functions that you will encounter tend to share some similarities. Let's call them the _Master Pattern_, as this will always be the pattern you'll start with.
+Most functions that you will encounter tend to share some similarities. Let's call them the _Master Pattern_, as this will always be the pattern you'll start with when you're confronted with the task of creating a new function from scratch.
 
 I will give you an example with the `ft_bzero` function:
 
