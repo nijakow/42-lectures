@@ -16,7 +16,7 @@ The idea behind patterns is to provide you with simple, easy-to-replace "blocks"
 
 Most functions that you will encounter tend to share some similarities. Let's call them the _Master Pattern_, as this will always be the pattern you'll start with when you're confronted with the task of creating a new function from scratch.
 
-I will give you an example with the `ft_bzero` function:
+Let's have a look at the `ft_bzero` function:
 
 ```c
 void ft_bzero(void* s, size_t n)
@@ -37,7 +37,9 @@ void ft_bzero(void* s, size_t n)
 }
 ```
 
-This function takes a pointer to a chunk of memory and its size, and fills every byte within that region with the value `0`. Let's now subdivide this function into five sections to see how it works:
+This function takes a pointer to a chunk of memory together with its size, and fills every byte within that region with the value `0`.
+
+Let's now subdivide this function into five sections to see how it works:
 
 ```c
 void ft_bzero(void* s, size_t n)
@@ -74,5 +76,7 @@ As you can see, every section in this function has a specific purpose.
  - Section 4 is where the fun begins. In this section you are only limited by your imagination. _However, it is strongly recommended that you insert **only one** high-level pattern here to avoid confusion._
  - Section 5 has the task of freeing all data structures that you have created in the sections before. _The only exception to this are memory blocks that are going to be `return`-ed to the caller of our function._
 
-As stated previously, you'll find these sections in almost every function that you're going to encounter.
+Sections 1, 2 and 3 have the purpose of setting everything up so that section 4 can run. Section 4 then executes a set of patterns that do the work that `ft_bzero` is responsible for, and section 5 terminates the function accordingly.
+
+As stated previously, you'll find these five sections in almost every function that you're going to encounter.
 
