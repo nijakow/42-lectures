@@ -71,9 +71,9 @@ void ft_bzero(void* s, size_t n)
 As you can see, every section in this function has a specific purpose.
 
  - Section 1 lists all variables that are going to be used within all following sections of the function. Just like the list of ingredients in a cooking recipe, it comes before anything else. _If you want to add a variable to your function, do it here._
- - Section 2 protects your code from segmentation faults, invalid memory reads, dangerous parameter values or any other state where your following sections could crash. _You'll find mostly `if` statements, `NULL` checks and `return` statements here._
- - Section 3 initializes all of your variables with a meaningful value. In some cases it creates new data structures by calling other functions (e.g. `malloc`). _Be aware that in order to avoid memory leaks, everything you're creating in this section (and all following sections) will either have to be destroyed in section 5 or passed back to the caller of the function._
- - Section 4 is where the fun begins. In this section you are only limited by your imagination. _However, it is strongly recommended that you insert **only one** high-level pattern here to avoid confusion._
+ - Section 2 protects your code from segmentation faults, invalid memory reads, dangerous parameter values or any other state where your following sections could crash. _Most patterns in this section are [Guard Patterns](#Guard Patterns)._
+ - Section 3 initializes all of your variables with a meaningful value by using [Initialization Patterns](#Initialization Patterns). In some cases it creates new data structures by calling other functions (e.g. `malloc`). _Be aware that in order to avoid memory leaks, everything you're creating in this section (and all following sections) will either have to be destroyed in section 5 or passed back to the caller of the function._
+ - Section 4 is where the fun begins. In this section you are only limited by your imagination. _However, it is strongly recommended that you insert **only one** [High-Level Pattern](#High-Level Patterns) here to avoid confusion._
  - Section 5 has the task of freeing all data structures that you have created in the sections before. _The only exception to this are memory blocks that are going to be `return`-ed to the caller of our function._
 
 Sections 1, 2 and 3 have the purpose of setting everything up so that section 4 can run. Section 4 then executes a set of patterns that do the work that `ft_bzero` is responsible for, and section 5 terminates the function accordingly.
@@ -102,3 +102,7 @@ if (ptr == NULL)
     return;
 }
 ```
+
+### Initialization Patterns
+
+### High-Level Patterns
