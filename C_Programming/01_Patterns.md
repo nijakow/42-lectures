@@ -4,7 +4,7 @@
 
 This is a question that I have been asked a lot in the last few weeks. For a while I didn't have a proper answer to it, but now I think that I do.
 
-## Thinking in Patterns
+## Thinking with Patterns
 	
 The key behind being able to tell the computer what to do is to not think of a C program as a bunch of instructions that are being executed line-by-line in a top-to-bottom manner, but rather as a collection of so-called _Patterns_. A pattern is a single, standalone piece of C code - often consisting of only a few (though sometimes more) lines - that serves exactly one purpose. When you're writing a program, your task is to select the correct patterns for your program, put them in the right order and connect them in a meaningful fashion.
 
@@ -37,7 +37,7 @@ void ft_bzero(void* s, size_t n)
 }
 ```
 
-Let's now subdivide this function into five sections.
+This function takes a pointer to a chunk of memory and its size, and fills every byte within that region with the value `0`. Let's now subdivide this function into five sections to see how it works:
 
 ```c
 void ft_bzero(void* s, size_t n)
@@ -65,3 +65,5 @@ void ft_bzero(void* s, size_t n)
     return;
 }
 ```
+
+As you can see, every section in this function has a specific purpose. Sections 1-3 exist to set everything up and prepare the _body_ in Section 4 of the function to run. Section 4 contains the core logic of the function, and Section 5 exists to clear up everything after the work is done.
