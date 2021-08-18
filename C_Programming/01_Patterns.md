@@ -136,4 +136,49 @@ Writing _NULL Guard_ patterns that way is _dangerous_ since both versions of the
 
 ### Initialization Patterns
 
+#### The Default Init
+
+Most variables are going to be initialized with their default value, depending on their type.
+
+Integers:
+
+```c
+i = 0;
+```
+
+Pointers:
+
+```c  
+ptr = NULL;
+```
+
+Strings (`char*`):
+
+```c
+str = "Some static string";
+```
+
+Arrays are initialized using the [Array Initialization Pattern](#array-initialization).
+
+#### Array Initialization
+There are multiple ways to initialize arrays. The generalized form to initialize an array of type `int array[10]` is by using a [BZero Pattern](#bzero-pattern).
+
+#### BZero Pattern
+In order to initialize a region of memory (as specified by its address and size), we use the _BZero Pattern_. This pattern is closely related to the standard library functions `bzero` and `memset`.
+
+Initializing an array with the declaration `int array[n];` using the _BZero Pattern_ looks like this:
+
+```c
+i = 0;
+while (i < n)
+{
+    array[i] = 0;
+    i = i + 1;
+}
+```
+
+An block of pointers or characters can be initialized by using `NULL` or `'\0'` as the according default value.
+
+It's often easier to write `bzero(array, 10 * sizeof(int));` or `memset(array, 0, 10 * sizeof(int))`. Be aware though that the definition of `NULL` might differ on multiple systems. Therefore, using `bzero` or `memset` for pointer arrays is _not recommended_.
+
 ### High-Level Patterns
