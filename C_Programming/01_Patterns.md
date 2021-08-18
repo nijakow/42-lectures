@@ -179,6 +179,6 @@ while (i < n)
 
 An block of pointers or characters can be initialized by using `NULL` or `'\0'` as the according default value.
 
-It's often easier to write `bzero(array, 10 * sizeof(int));` or `memset(array, 0, 10 * sizeof(int))`. Be aware though that the definition of `NULL` and the interna of floating point numbers might differ on multiple systems. Therefore, using `bzero` or `memset` for pointer arrays and arrays of type `float`, `double`, `struct` or `union` is _not recommended_.
+It's often easier to write `bzero(array, 10 * sizeof(int));` or `memset(array, 0, 10 * sizeof(int));` instead of typing out the entire loop. Be aware though that the definition of `NULL` and the interna of floating point numbers might differ on multiple systems. Therefore, using `bzero` or `memset` for pointer arrays and arrays of type `float`, `double`, `struct` or `union` is _not recommended_.
 
 ### High-Level Patterns
