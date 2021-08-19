@@ -146,6 +146,12 @@ Integers:
 i = 0;
 ```
 
+Characters:
+
+```c  
+c = '\0';
+```
+
 Pointers:
 
 ```c  
