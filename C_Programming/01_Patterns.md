@@ -88,11 +88,6 @@ As stated previously, you'll find these five sections in almost every function t
 
 The most frequently occuring guard pattern is the so-called _NULL Guard_ pattern. A _NULL Guard_ checks whether a variable (`ptr` in this case) is equal to `NULL` - and if it is, it terminates the function, by giving back an _error indicator_ as the return value (often `NULL`, `'\0'`, `0` or nothing at all, depending on the return type):
 
-```c
-if (ptr == NULL)
-    return;
-```
-
 ```c  
 if (ptr == NULL)
     return NULL;
@@ -106,6 +101,11 @@ if (ptr == NULL)
 ```c  
 if (ptr == NULL)
     return 0;
+```
+
+```c
+if (ptr == NULL)
+    return;
 ```
 
 In some cases, the _NULL Guard_ also cleans up and destroys active data structures (just like the fifth section of a function), e.g.:
