@@ -233,7 +233,7 @@ char *read_all()
     char*          c_str;
  
     /* Initialization: Create the String */
-	String_Create(&string);
+    String_Create(&string);
     
     /* Main part of the function: Append chars until done, then convert to char* */
     while (has_more())
