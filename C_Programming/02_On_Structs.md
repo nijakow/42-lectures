@@ -72,15 +72,15 @@ Think of it like building a box with drawers, each drawer containing one or more
 
 ```
 +--------------------------------+
-|               O                |   <-  Drawer 'a', containing a char
+|               -                |   <-  Drawer 'a', containing a char
 +--------------------------------+
-|               O                |   <-  Drawer 'b', containing an int
+|               -                |   <-  Drawer 'b', containing an int
 +--------------------------------+
-|               O                |   <-  Drawer 'c', containing a float
+|               -                |   <-  Drawer 'c', containing a float
 +--------------------------------+
-|               O                |   <-  Drawer 'd', containing a char*
+|               -                |   <-  Drawer 'd', containing a char*
 +--------------------------------+
-|               O                |   <-  Drawer 'e', containing a smaller box
+|               -                |   <-  Drawer 'e', containing a smaller box
 +--------------------------------+
 ```
 
@@ -99,7 +99,40 @@ struct Box
 
 Now, this looks suspiciously like the "list of ingredients" that we write at the beginning of each function, right?
 
-That's because they're actually related: Both lists tell the C compiler what to do with the bytes we were given, and how to access them. Again: It's up to us to decide what we want - we're not limited by the types we were given!
+That's because they're actually related: Both lists tell the C compiler what to do with the bytes we were given, and how to access them. Again: It's up to us to decide what we want - we're not limited by the types available to us!
+
+### Accessing members of a struct
+
+To declare a variable of a struct type, write
+
+```c
+struct Box  my_box;
+```
+
+in your declaration section. Don't forget the `struct` keyword, you always have to write it explicitly (although the `typedef` statement can override this).
+
+You can access a struct's members just like you can access variables. Use the `.` operator for this:
+
+```c
+my_box.a = 'h';
+my_box.b = 42;
+my_box.c = 5.3;
+my_box.d = "Hello";
+my_box.e.some_other_member = 11;
+```
+
+If you have a pointer, there are two equivalent notations:
+
+```c
+struct Box*  box;
+
+box = Box_New();
+box->a = 'h';    // equivalent to: (*box).a = 'h';
+box->b = 42;
+box->c = 5.3;
+box->d = "Hello";
+box->e.some_other_member = 11; // Also using a dot since e is of type 'struct SmallerBox'
+```
 
 ## Patterns!
 
@@ -107,13 +140,14 @@ As always, here's a bunch of a few commonly used patterns regarding structs, tog
 
 > Hint: If you don't know what these structs represent, just google the corresponding heading. There are some great visualizations of linked lists and ringbuffers online!
 
-### Dynamically Resizable Strings
+### Dynamic Strings (automatically resizing)
 
 ```c
 struct String
 {
     char*        data;
-    unsigned int size;
+    unsigned int bytes_allocated;
+    unsigned int length;
 };
 
 void  String_Create(struct String*, char*);
@@ -215,3 +249,4 @@ char *read_all()
 ```
 
 As you can see, all of the memory allocation is now handled by the `String_` functions instead of our `read_all()`. We only have to create the string at the beginning and destroy it at the end. Resizing the actual byte array that stores the chars inside of the string is nothing we have to deal with anymore, also the intermediate strings created by `strjoin(...)` are nothing we have to touch. The code is much more readable now, and the complexity of handling allocations has been outsourced to other functions. Yay! Structs are awesome! 
+
